@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+               https://www.springframework.org/schema/beans/spring-beans.xsd
+               http://www.springframework.org/schema/context
+               https://www.springframework.org/schema/context/spring-context.xsd
+               http://www.springframework.org/schema/aop
+               https://www.springframework.org/schema/aop/spring-aop.xsd
+               http://www.springframework.org/schema/mvc
+               http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--自动扫描包，让指定包下的注解生效，由IOC容器统一管理-->
+    <context:component-scan base-package="com.sqx.controller"/>
+    <!--让Spring不处理静态资源 .css .html .js .mp3 .mp4  -->
+    <mvc:default-servlet-handler/>
+    <!--支持注解驱动，
+        在Spring中一般采用@RequestMapping注解来完成映射关系
+        要想使@RequestMapping注解生效
+        配置annotation-driver来帮助我们自动完成DefaultAnnotationHandlerMapping
+        和AnnotationMethodHandlerAdapter实例，这两个实例分别在类级和方法级处理
+    -->
+    <mvc:annotation-driven/>
+
+    <!--视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="InternalResourceViewResolver">
+        <!--前缀-->
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <!--后缀-->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+</beans>
